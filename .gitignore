@@ -1,0 +1,37 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+build/
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+.kotlin/
+node_modules/
+
+# Volcados de errores de la JVM
+hs_err_pid*.log
+replay_pid*.log
+
+# ---- Secretos: NUNCA se suben al repositorio (práctica 13) ----
+# Llave privada de Firebase (cuenta de servicio)
+backend/privado/
+# Conexión a MySQL de producción: se sube solo la plantilla backend/db.example.php
+db.php
+# Configuración de Firebase del proyecto (la app compila sin él)
+google-services.json
+
+# Proyecto aparte (práctica 5) y documentos/evidencias pesados de prácticas anteriores
+/AccesoSeguro/
+/docs/*.docx
+/docs/*.pdf
+/docs/capturas/
+/docs/practica11/
+/docs/practica12/

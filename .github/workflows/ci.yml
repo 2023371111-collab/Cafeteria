@@ -1,0 +1,138 @@
+# =============================================
+# Prácticas 13 y 14 · Integración continua de Cafetería Móvil (Kotlin / Gradle)
+#
+# Se ejecuta solo en cada push y en cada pull request:
+#   AUT-07  job "unitarias":   pruebas unitarias, de integración con servidor simulado y de
+#                              persistencia (Robolectric) + Android Lint
+#   AUT-08  job "integracion": levanta la API PHP + MySQL 8 de pruebas (Docker) y ejecuta las
+#                              pruebas contra el backend real
+# Si una prueba falla, el job queda en rojo y el pull request muestra el error.
+# =============================================
+name: CI Cafetería
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:   # permite volver a ejecutarlo a mano desde la pestaña Actions
+
+# Un push nuevo a la misma rama cancela la ejecución anterior que siga corriendo
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  GRADLE_OPTS: -Dorg.gradle.daemon=false
+
+jobs:
+  unitarias:
+    name: Pruebas unitarias + Lint (AUT-07)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v4
+
+      - name: Instalar JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Preparar Gradle (con caché)
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Permiso de ejecución a gradlew
+        run: chmod +x gradlew
+
+      - name: Pruebas unitarias, integración simulada y persistencia
+        # AUT-05 (backend real) se marca "skipped" aquí; se ejecuta en el job "integracion"
+        run: ./gradlew :app:testDebugUnitTest --stacktrace
+
+      - name: Android Lint
+        run: ./gradlew :app:lintDebug
+
+      - name: Resumen de resultados
+        if: always()
+        run: bash .github/scripts/resumen_pruebas.sh app/build/test-results/testDebugUnitTest "Pruebas unitarias (AUT-01 a AUT-06)" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Guardar reportes (evidencia)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reportes-unitarias
+          path: |
+            app/build/test-results/testDebugUnitTest/
+            app/build/reports/tests/testDebugUnitTest/
+            app/build/reports/lint-results-debug.html
+          if-no-files-found: warn
+
+  integracion:
+    name: Integración con API PHP + MySQL (AUT-08)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v4
+
+      - name: Instalar JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Preparar Gradle (con caché)
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Permiso de ejecución a gradlew
+        run: chmod +x gradlew
+
+      - name: Configurar backend de pruebas (sin credenciales reales)
+        # db.php no está en el repositorio: se usa la plantilla y los datos de MySQL llegan por
+        # las variables CAFETERIA_DB_* del docker-compose (base en memoria, solo datos ficticios)
+        run: |
+          cp backend/db.example.php backend/db.php
+          mkdir -p backend/privado/cache
+
+      - name: Levantar API PHP + MySQL 8 (Docker)
+        run: docker compose -f backend/pruebas/docker-compose.yml up -d --build --wait
+
+      - name: Esperar a que la API responda
+        run: |
+          for i in $(seq 1 30); do
+            if curl -fsS http://localhost:8080/api/productos.php > /dev/null; then echo "API lista"; exit 0; fi
+            sleep 2
+          done
+          docker compose -f backend/pruebas/docker-compose.yml logs
+          exit 1
+
+      - name: Pruebas contra el backend real
+        run: >
+          ./gradlew :app:testDebugUnitTest
+          --tests "com.example.cafeteria.AUT05PedidosApiRealTest"
+          --tests "com.example.cafeteria.PedidosApiIntegracionTest"
+          -PapiPruebasUrl=http://localhost:8080/api/
+
+      - name: Resumen de resultados
+        if: always()
+        run: bash .github/scripts/resumen_pruebas.sh app/build/test-results/testDebugUnitTest "Integración con backend real (AUT-05)" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Bitácora del servidor si algo falló
+        if: failure()
+        run: docker compose -f backend/pruebas/docker-compose.yml logs
+
+      - name: Guardar reportes (evidencia)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reportes-integracion
+          path: |
+            app/build/test-results/testDebugUnitTest/
+            app/build/reports/tests/testDebugUnitTest/
+          if-no-files-found: warn
+
+      - name: Apagar contenedores
+        if: always()
+        run: docker compose -f backend/pruebas/docker-compose.yml down -v

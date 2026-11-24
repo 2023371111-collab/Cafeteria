@@ -1,0 +1,220 @@
+rules_version = '2';
+
+// =============================================
+// Cafetería Móvil · módulo "Soporte" (prácticas 7, 9 y 10)
+// Reglas de seguridad de Cloud Firestore.
+//
+// Idea general:
+//  - Sin sesión de Firebase Authentication no se lee ni se escribe nada (SEG-10).
+//  - Cada incidencia tiene dueño: creadoPor = UID de quien la creó. Lo pone la app,
+//    pero AQUÍ se comprueba que sea el UID autenticado (SEG-03, SEG-04) y que nunca cambie (SEG-09).
+//  - Un "usuario" solo lee y modifica SUS incidencias (SEG-05, SEG-06, SEG-07, SEG-08).
+//  - El personal (admin y agente) atiende las de todos. El rol se lee de usuarios/{uid}
+//    y un usuario no puede subirse el rol solo (solo con una invitación del admin).
+//  - Se validan tipos, tamaños y la lista exacta de campos (no se aceptan campos inesperados).
+// =============================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ---------- Quién hace la petición ----------
+
+    function autenticado() {
+      return request.auth != null;
+    }
+
+    function rutaPerfil(uid) {
+      return /databases/$(database)/documents/usuarios/$(uid);
+    }
+
+    function rolActual() {
+      return exists(rutaPerfil(request.auth.uid)) ? get(rutaPerfil(request.auth.uid)).data.rol : 'ninguno';
+    }
+
+    function esAdmin() {
+      return autenticado() && rolActual() == 'admin';
+    }
+
+    function esAgente() {
+      return autenticado() && rolActual() == 'agente';
+    }
+
+    // El admin ve todo; el agente ve lo que va a la mesa de ayuda
+    // (las solicitudes dirigidas al administrador solo las ven el admin y su dueño).
+    function personalVe(d) {
+      return esAdmin() || (esAgente() && d.dirigidoA == 'soporte');
+    }
+
+    function esDueno(d) {
+      return autenticado() && d.creadoPor == request.auth.uid;
+    }
+
+    function cambiaron() {
+      return request.resource.data.diff(resource.data).affectedKeys();
+    }
+
+    // ---------- Perfiles y roles ----------
+    // usuarios/{uid}: nombre, correo, rol, dispositivo, conectado, ultimaConexion, invitacion
+    match /usuarios/{uid} {
+      // Cualquiera con sesión puede ver UN perfil (nombre, rol y si está conectado);
+      // solo el personal puede listar a todos.
+      allow get: if autenticado();
+      allow list: if esAdmin() || esAgente();
+
+      // Al crear cuenta desde la app el rol SIEMPRE es "usuario"
+      allow create: if autenticado() && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['nombre', 'correo', 'rol', 'dispositivo', 'conectado', 'ultimaConexion'])
+        && request.resource.data.rol == 'usuario'
+        && request.resource.data.nombre is string
+        && request.resource.data.nombre.size() >= 2 && request.resource.data.nombre.size() <= 40
+        && request.resource.data.correo == request.auth.token.email;
+
+      allow update: if esAdmin()
+        // El dueño solo cambia su nombre y su estado de conexión, nunca su rol
+        || (autenticado() && request.auth.uid == uid
+            && cambiaron().hasOnly(['nombre', 'dispositivo', 'conectado', 'ultimaConexion']))
+        // ...salvo con una invitación vigente del admin (URL preasignada de rol)
+        || (autenticado() && request.auth.uid == uid && aceptaInvitacion());
+
+      allow delete: if false;
+    }
+
+    function rutaInvitacion(codigo) {
+      return /databases/$(database)/documents/invitaciones/$(codigo);
+    }
+
+    // La invitación debe estar libre ANTES y quedar usada por este UID DESPUÉS (mismo batch),
+    // y el rol nuevo debe ser exactamente el de la invitación.
+    function aceptaInvitacion() {
+      let codigo = request.resource.data.invitacion;
+      let antes = get(rutaInvitacion(codigo)).data;
+      let despues = getAfter(rutaInvitacion(codigo)).data;
+      return cambiaron().hasOnly(['rol', 'invitacion'])
+        && antes.usadaPor == null
+        && antes.expira > request.time
+        && despues.usadaPor == request.auth.uid
+        && request.resource.data.rol == antes.rol;
+    }
+
+    // ---------- Invitaciones de rol (URL preasignada: cafeteria://rol?codigo=...) ----------
+    match /invitaciones/{codigo} {
+      allow create: if esAdmin()
+        && request.resource.data.keys().hasOnly(['rol', 'creadaPor', 'creadaEn', 'expira', 'usadaPor'])
+        && request.resource.data.rol in ['admin', 'agente', 'usuario']
+        && request.resource.data.creadaPor == request.auth.uid
+        && request.resource.data.creadaEn == request.time
+        && request.resource.data.expira is timestamp
+        && request.resource.data.usadaPor == null;
+      // Conocer el código es la llave; listar todas solo el admin
+      allow get: if autenticado();
+      allow list: if esAdmin();
+      // Solo se "usa" una vez y solo la marca quien la usa
+      allow update: if autenticado()
+        && resource.data.usadaPor == null
+        && resource.data.expira > request.time
+        && cambiaron().hasOnly(['usadaPor'])
+        && request.resource.data.usadaPor == request.auth.uid;
+      allow delete: if esAdmin();
+    }
+
+    // ---------- Incidencias / reportes ----------
+    function incidenciaValida(d) {
+      return d.keys().hasOnly(['id', 'titulo', 'tipo', 'equipo', 'descripcion', 'estado', 'prioridad',
+                               'dirigidoA', 'creadoPor', 'creadoPorNombre', 'asignadoA', 'asignadoNombre',
+                               'activo', 'version', 'creadoEn', 'actualizadoEn', 'actualizadoPor', 'actualizadoPorNombre'])
+        && d.keys().hasAll(['id', 'titulo', 'tipo', 'equipo', 'descripcion', 'estado', 'prioridad',
+                            'dirigidoA', 'creadoPor', 'activo', 'version', 'creadoEn'])
+        && d.titulo is string && d.titulo.size() >= 3 && d.titulo.size() <= 60
+        && d.equipo is string && d.equipo.size() >= 2 && d.equipo.size() <= 40
+        && d.descripcion is string && d.descripcion.size() >= 5 && d.descripcion.size() <= 300
+        && d.tipo in ['Falla en pedido', 'Acceso perdido', 'Cobro incorrecto', 'Falla de la app', 'Otro']
+        && d.estado in ['Pendiente', 'En proceso', 'Resuelta']
+        && d.prioridad in ['Baja', 'Media', 'Alta', 'Crítica']
+        && d.dirigidoA in ['soporte', 'admin']
+        && d.activo is bool
+        && d.version is int;
+    }
+
+    match /incidencias/{id} {
+      // Leer un documento: el dueño o el personal. Si no existe se permite para que la app
+      // pueda decir "no existe" (TC06) en lugar de un error.
+      allow get: if autenticado() && (resource == null || esDueno(resource.data) || personalVe(resource.data));
+      // Las consultas de lista deben venir filtradas: el usuario por creadoPor == su UID.
+      allow list: if autenticado() && (esDueno(resource.data) || personalVe(resource.data));
+
+      allow create: if autenticado()
+        && incidenciaValida(request.resource.data)
+        && id.matches('^[A-Z0-9_-]{3,20}$')
+        && request.resource.data.id == id
+        // El propietario es SIEMPRE quien está autenticado (no se puede suplantar)
+        && request.resource.data.creadoPor == request.auth.uid
+        && request.resource.data.estado == 'Pendiente'
+        && request.resource.data.activo == true
+        && request.resource.data.version == 1
+        && request.resource.data.asignadoA == null
+        && request.resource.data.creadoEn == request.time;
+
+      allow update: if autenticado()
+        && incidenciaValida(request.resource.data)
+        // Lo que nunca cambia: id, propietario y fecha de creación
+        && request.resource.data.id == resource.data.id
+        && request.resource.data.creadoPor == resource.data.creadoPor
+        && request.resource.data.creadoPorNombre == resource.data.creadoPorNombre
+        && request.resource.data.creadoEn == resource.data.creadoEn
+        // Control de concurrencia: cada cambio sube la versión en 1
+        && request.resource.data.version == resource.data.version + 1
+        && request.resource.data.actualizadoPor == request.auth.uid
+        && (
+          personalVe(resource.data)
+          // El dueño edita su incidencia, pero no la asigna ni la redirige
+          || (esDueno(resource.data)
+              && !cambiaron().hasAny(['asignadoA', 'asignadoNombre', 'dirigidoA']))
+        );
+
+      // Borrado físico solo el admin; los demás hacen baja lógica (activo = false)
+      allow delete: if esAdmin();
+
+      // ----- Conversación de la incidencia (práctica 7) -----
+      function incidencia() {
+        return get(/databases/$(database)/documents/incidencias/$(id)).data;
+      }
+      function participa() {
+        return autenticado() && (esDueno(incidencia()) || personalVe(incidencia()));
+      }
+
+      match /mensajes/{mensajeId} {
+        allow read: if participa();
+        allow create: if participa()
+          && request.resource.data.keys().hasOnly(['emisorUid', 'emisorNombre', 'emisorRol', 'emisorDispositivo',
+                                                   'para', 'texto', 'archivoId', 'archivoNombre', 'archivoTipo',
+                                                   'archivoBytes', 'enviadoEn'])
+          && request.resource.data.emisorUid == request.auth.uid
+          && request.resource.data.texto is string
+          && request.resource.data.texto.size() <= 200
+          // Sin texto y sin archivo = mensaje vacío: se rechaza
+          && (request.resource.data.texto.size() > 0 || request.resource.data.archivoId is string)
+          && request.resource.data.para in ['todos', 'admin', 'agente', 'usuario']
+          && request.resource.data.enviadoEn == request.time;
+        // El historial no se edita ni se borra
+        allow update, delete: if false;
+      }
+
+      // Archivos adjuntos (en base64, hasta ~800 KB para no pasar el límite de 1 MB por documento)
+      match /archivos/{archivoId} {
+        allow read: if participa();
+        allow create: if participa()
+          && request.resource.data.keys().hasOnly(['nombre', 'tipo', 'bytes', 'datos', 'subidoPor', 'subidoEn'])
+          && request.resource.data.subidoPor == request.auth.uid
+          && request.resource.data.datos is string
+          && request.resource.data.datos.size() <= 1000000
+          && request.resource.data.subidoEn == request.time;
+        allow update, delete: if false;
+      }
+    }
+
+    // Cualquier otra colección: cerrada
+    match /{documento=**} {
+      allow read, write: if false;
+    }
+  }
+}

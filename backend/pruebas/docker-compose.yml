@@ -1,0 +1,45 @@
+# =============================================
+# Entorno de pruebas de la API (integración y E2E)
+#   docker compose -f backend/pruebas/docker-compose.yml up -d --build
+#   API: http://localhost:8080/api/   (desde el emulador: http://10.0.2.2:8080/api/)
+# La base vive en memoria (tmpfs): cada vez que se levanta empieza limpia,
+# solo con los datos ficticios de datos_prueba.sql. Nunca toca la base real.
+# =============================================
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root_pruebas
+      MYSQL_DATABASE: cafeteria_pruebas
+      MYSQL_USER: pruebas
+      MYSQL_PASSWORD: pruebas_local
+    tmpfs:
+      - /var/lib/mysql
+    volumes:
+      - ../sql/pedidos.sql:/docker-entrypoint-initdb.d/01_pedidos.sql:ro
+      - ../sql/usuarios_app.sql:/docker-entrypoint-initdb.d/02_usuarios_app.sql:ro
+      - ./datos_prueba.sql:/docker-entrypoint-initdb.d/03_datos_prueba.sql:ro
+      - ../sql/mensajes.sql:/docker-entrypoint-initdb.d/04_mensajes.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-proot_pruebas"]
+      interval: 3s
+      retries: 40
+
+  api:
+    build: .
+    ports:
+      - "8080:80"
+    environment:
+      CAFETERIA_DB_HOST: db
+      CAFETERIA_DB_PORT: "3306"
+      CAFETERIA_DB_USER: pruebas
+      CAFETERIA_DB_PASS: pruebas_local
+      CAFETERIA_DB_NAME: cafeteria_pruebas
+    volumes:
+      - ..:/var/www/html:ro
+    # Práctica 12: carpeta escribible para el caché de productos.php (el resto es de solo lectura)
+    tmpfs:
+      - /var/www/html/privado/cache:mode=1777
+    depends_on:
+      db:
+        condition: service_healthy
