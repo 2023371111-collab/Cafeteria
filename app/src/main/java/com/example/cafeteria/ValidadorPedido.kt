@@ -9,7 +9,7 @@ package com.example.cafeteria
 object ValidadorPedido {
 
     private val REGEX_NOMBRE = Regex("^[\\p{L} .'-]{3,60}$")
-    private val REGEX_TELEFONO = Regex("^\\d{10}$")
+    private val REGEX_TELEFONO = Regex("^\\d{8,10}$")
     private val REGEX_FOLIO = Regex("^CMD-[0-9A-Z]{6}$")
     const val MAX_NOTAS = 150
     const val MAX_DIRECCION = 150
