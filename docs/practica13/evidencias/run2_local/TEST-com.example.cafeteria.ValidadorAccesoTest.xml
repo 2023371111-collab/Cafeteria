@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.cafeteria.ValidadorAccesoTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-11-24T23:58:26.370Z" hostname="MATEBOOKANGEL" time="0.002">
+  <properties/>
+  <testcase name="longitud_excedida" classname="com.example.cafeteria.ValidadorAccesoTest" time="0.0"/>
+  <testcase name="caracteres_no_permitidos" classname="com.example.cafeteria.ValidadorAccesoTest" time="0.0"/>
+  <testcase name="contrasena_minimo_8" classname="com.example.cafeteria.ValidadorAccesoTest" time="0.001"/>
+  <testcase name="datos_validos" classname="com.example.cafeteria.ValidadorAccesoTest" time="0.0"/>
+  <testcase name="registro_usuario_con_espacios_o_simbolos" classname="com.example.cafeteria.ValidadorAccesoTest" time="0.0"/>
+  <testcase name="registro_contrasena_sin_letras_o_corta" classname="com.example.cafeteria.ValidadorAccesoTest" time="0.0"/>
+  <testcase name="campos_vacios" classname="com.example.cafeteria.ValidadorAccesoTest" time="0.0"/>
+  <testcase name="registro_campos_con_error" classname="com.example.cafeteria.ValidadorAccesoTest" time="0.0"/>
+  <testcase name="usuario_solo_espacios" classname="com.example.cafeteria.ValidadorAccesoTest" time="0.0"/>
+  <testcase name="registro_valido" classname="com.example.cafeteria.ValidadorAccesoTest" time="0.0"/>
+  <testcase name="el_motivo_de_log_no_contiene_credenciales" classname="com.example.cafeteria.ValidadorAccesoTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

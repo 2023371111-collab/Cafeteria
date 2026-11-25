@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.cafeteria.OrderRepositoryTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-11-25T00:10:49.773Z" hostname="MATEBOOKANGEL" time="0.096">
+  <properties/>
+  <testcase name="error_422_muestra_el_mensaje_del_servidor" classname="com.example.cafeteria.OrderRepositoryTest" time="0.017"/>
+  <testcase name="limite_respuesta_con_nulos_y_sin_renglones_no_truena" classname="com.example.cafeteria.OrderRepositoryTest" time="0.027"/>
+  <testcase name="error_500_sin_json_da_mensaje_generico" classname="com.example.cafeteria.OrderRepositoryTest" time="0.011"/>
+  <testcase name="error_html_con_codigo_200_se_reporta_como_respuesta_no_valida" classname="com.example.cafeteria.OrderRepositoryTest" time="0.017"/>
+  <testcase name="valido_envia_solo_ids_y_cantidades_y_lee_el_pedido_guardado" classname="com.example.cafeteria.OrderRepositoryTest" time="0.013"/>
+  <testcase name="invalido_producto_con_id_no_numerico_se_rechaza_sin_usar_la_red" classname="com.example.cafeteria.OrderRepositoryTest" time="0.009"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

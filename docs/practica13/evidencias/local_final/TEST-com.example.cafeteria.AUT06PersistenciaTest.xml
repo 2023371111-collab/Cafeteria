@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.cafeteria.AUT06PersistenciaTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-11-25T00:10:35.645Z" hostname="MATEBOOKANGEL" time="14.116">
+  <properties/>
+  <testcase name="registrar_guarda_el_usuario_y_asigna_id" classname="com.example.cafeteria.AUT06PersistenciaTest" time="13.002"/>
+  <testcase name="carrito_guardado_corrupto_se_descarta_sin_cerrar_la_app" classname="com.example.cafeteria.AUT06PersistenciaTest" time="0.21"/>
+  <testcase name="migracion_1_a_2_conserva_los_usuarios_existentes" classname="com.example.cafeteria.AUT06PersistenciaTest" time="0.202"/>
+  <testcase name="modificar_y_eliminar_se_reflejan_en_la_base" classname="com.example.cafeteria.AUT06PersistenciaTest" time="0.083"/>
+  <testcase name="consulta_devuelve_en_orden_de_registro_y_correo_por_omision_vacio" classname="com.example.cafeteria.AUT06PersistenciaTest" time="0.087"/>
+  <testcase name="el_carrito_se_conserva_al_cerrar_y_abrir_la_app" classname="com.example.cafeteria.AUT06PersistenciaTest" time="0.134"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

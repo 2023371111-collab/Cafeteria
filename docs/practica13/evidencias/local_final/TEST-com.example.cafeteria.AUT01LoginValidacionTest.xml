@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.cafeteria.AUT01LoginValidacionTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-11-25T00:10:25.095Z" hostname="MATEBOOKANGEL" time="0.032">
+  <properties/>
+  <testcase name="contrasena_fuera_de_rango_se_rechaza" classname="com.example.cafeteria.AUT01LoginValidacionTest" time="0.004"/>
+  <testcase name="registro_fuera_de_rango_indica_el_limite" classname="com.example.cafeteria.AUT01LoginValidacionTest" time="0.004"/>
+  <testcase name="usuario_en_el_limite_se_acepta_y_uno_mas_se_rechaza" classname="com.example.cafeteria.AUT01LoginValidacionTest" time="0.0"/>
+  <testcase name="caracteres_de_inyeccion_se_rechazan_sin_revelar_la_entrada" classname="com.example.cafeteria.AUT01LoginValidacionTest" time="0.001"/>
+  <testcase name="campos_vacios_o_solo_espacios_se_rechazan_con_mensaje_generico" classname="com.example.cafeteria.AUT01LoginValidacionTest" time="0.004"/>
+  <testcase name="registro_valido_no_tiene_errores" classname="com.example.cafeteria.AUT01LoginValidacionTest" time="0.014"/>
+  <testcase name="registro_vacio_marca_los_cuatro_campos" classname="com.example.cafeteria.AUT01LoginValidacionTest" time="0.001"/>
+  <testcase name="contrasena_de_registro_sin_numeros_se_rechaza" classname="com.example.cafeteria.AUT01LoginValidacionTest" time="0.0"/>
+  <testcase name="entrada_valida_se_acepta" classname="com.example.cafeteria.AUT01LoginValidacionTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

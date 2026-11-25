@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.cafeteria.WB01ValidarAccesoTest" tests="15" skipped="0" failures="0" errors="0" timestamp="2026-11-24T23:58:26.403Z" hostname="MATEBOOKANGEL" time="0.008">
+  <properties/>
+  <testcase name="p1_campos_vacios" classname="com.example.cafeteria.WB01ValidarAccesoTest" time="0.001"/>
+  <testcase name="cc_c1b_verdadera" classname="com.example.cafeteria.WB01ValidarAccesoTest" time="0.0"/>
+  <testcase name="cc_c2b_verdadera" classname="com.example.cafeteria.WB01ValidarAccesoTest" time="0.0"/>
+  <testcase name="limite_contrasena_7_8_64_65" classname="com.example.cafeteria.WB01ValidarAccesoTest" time="0.001"/>
+  <testcase name="p3_contrasena_corta" classname="com.example.cafeteria.WB01ValidarAccesoTest" time="0.0"/>
+  <testcase name="p5_valido" classname="com.example.cafeteria.WB01ValidarAccesoTest" time="0.0"/>
+  <testcase name="limite_usuario_de_1_caracter_se_acepta_en_login" classname="com.example.cafeteria.WB01ValidarAccesoTest" time="0.0"/>
+  <testcase name="inyeccion_y_script_se_rechazan_antes_de_la_red" classname="com.example.cafeteria.WB01ValidarAccesoTest" time="0.0"/>
+  <testcase name="p2_longitud_excedida" classname="com.example.cafeteria.WB01ValidarAccesoTest" time="0.001"/>
+  <testcase name="p4_formato_no_permitido" classname="com.example.cafeteria.WB01ValidarAccesoTest" time="0.0"/>
+  <testcase name="limite_usuario_se_mide_sin_espacios" classname="com.example.cafeteria.WB01ValidarAccesoTest" time="0.001"/>
+  <testcase name="cc_c1a_verdadera" classname="com.example.cafeteria.WB01ValidarAccesoTest" time="0.0"/>
+  <testcase name="limite_usuario_30_acepta_31_rechaza" classname="com.example.cafeteria.WB01ValidarAccesoTest" time="0.0"/>
+  <testcase name="el_rechazo_no_expone_credenciales" classname="com.example.cafeteria.WB01ValidarAccesoTest" time="0.001"/>
+  <testcase name="cc_c2a_y_c2b_verdaderas" classname="com.example.cafeteria.WB01ValidarAccesoTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

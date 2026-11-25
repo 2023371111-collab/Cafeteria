@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.cafeteria.ValidadorPedidoTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-11-25T00:10:25.042Z" hostname="MATEBOOKANGEL" time="0.046">
+  <properties/>
+  <testcase name="nombre_valido_con_acentos" classname="com.example.cafeteria.ValidadorPedidoTest" time="0.001"/>
+  <testcase name="notas_maximo_150" classname="com.example.cafeteria.ValidadorPedidoTest" time="0.001"/>
+  <testcase name="telefono_de_10_digitos" classname="com.example.cafeteria.ValidadorPedidoTest" time="0.001"/>
+  <testcase name="ubicacion_en_rango" classname="com.example.cafeteria.ValidadorPedidoTest" time="0.001"/>
+  <testcase name="nombre_invalido" classname="com.example.cafeteria.ValidadorPedidoTest" time="0.001"/>
+  <testcase name="formatea_fecha_de_mysql" classname="com.example.cafeteria.ValidadorPedidoTest" time="0.04"/>
+  <testcase name="limpia_espacios_repetidos" classname="com.example.cafeteria.ValidadorPedidoTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.cafeteria.AUT05PedidosApiRealTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-11-25T00:10:34.055Z" hostname="MATEBOOKANGEL" time="0.926">
+  <properties/>
+  <testcase name="login_real_con_cuenta_de_pruebas_devuelve_sesion" classname="com.example.cafeteria.AUT05PedidosApiRealTest" time="0.338"/>
+  <testcase name="la_api_devuelve_los_codigos_http_esperados" classname="com.example.cafeteria.AUT05PedidosApiRealTest" time="0.263"/>
+  <testcase name="producto_no_disponible_se_rechaza_con_mensaje_del_servidor" classname="com.example.cafeteria.AUT05PedidosApiRealTest" time="0.098"/>
+  <testcase name="el_pedido_enviado_se_almacena_y_se_puede_consultar" classname="com.example.cafeteria.AUT05PedidosApiRealTest" time="0.12"/>
+  <testcase name="el_mismo_pedido_reenviado_con_la_misma_clave_no_se_duplica" classname="com.example.cafeteria.AUT05PedidosApiRealTest" time="0.106"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

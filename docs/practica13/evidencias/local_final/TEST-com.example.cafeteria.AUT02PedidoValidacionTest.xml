@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.cafeteria.AUT02PedidoValidacionTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-11-25T00:10:24.652Z" hostname="MATEBOOKANGEL" time="0.382">
+  <properties/>
+  <testcase name="coordenadas_fuera_del_planeta_o_nan_se_rechazan" classname="com.example.cafeteria.AUT02PedidoValidacionTest" time="0.019"/>
+  <testcase name="telefono_con_9_u_11_digitos_o_letras_se_rechaza" classname="com.example.cafeteria.AUT02PedidoValidacionTest" time="0.328"/>
+  <testcase name="campos_vacios_piden_capturar_el_dato" classname="com.example.cafeteria.AUT02PedidoValidacionTest" time="0.0"/>
+  <testcase name="notas_en_el_limite_se_aceptan_y_una_letra_mas_se_rechaza" classname="com.example.cafeteria.AUT02PedidoValidacionTest" time="0.0"/>
+  <testcase name="normalizar_folio_produce_el_formato_esperado" classname="com.example.cafeteria.AUT02PedidoValidacionTest" time="0.002"/>
+  <testcase name="nombre_de_61_letras_o_con_numeros_se_rechaza" classname="com.example.cafeteria.AUT02PedidoValidacionTest" time="0.001"/>
+  <testcase name="datos_validos_no_tienen_error" classname="com.example.cafeteria.AUT02PedidoValidacionTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

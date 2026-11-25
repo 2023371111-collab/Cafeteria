@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.cafeteria.AUT04LoginIntegracionTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-11-25T00:10:25.667Z" hostname="MATEBOOKANGEL" time="8.376">
+  <properties/>
+  <testcase name="la_app_envia_credenciales_por_POST_y_recibe_una_sesion_valida" classname="com.example.cafeteria.AUT04LoginIntegracionTest" time="0.279"/>
+  <testcase name="respuesta_html_en_lugar_de_json_no_cierra_la_app" classname="com.example.cafeteria.AUT04LoginIntegracionTest" time="0.016"/>
+  <testcase name="codigo_401_se_interpreta_como_credenciales_rechazadas" classname="com.example.cafeteria.AUT04LoginIntegracionTest" time="0.024"/>
+  <testcase name="servidor_que_no_responde_muestra_mensaje_de_conexion" classname="com.example.cafeteria.AUT04LoginIntegracionTest" time="8.014"/>
+  <testcase name="servidor_apagado_muestra_mensaje_de_conexion" classname="com.example.cafeteria.AUT04LoginIntegracionTest" time="0.008"/>
+  <testcase name="registro_con_usuario_ocupado_409_muestra_el_mensaje_del_servidor" classname="com.example.cafeteria.AUT04LoginIntegracionTest" time="0.015"/>
+  <testcase name="codigo_500_muestra_mensaje_generico_sin_detalles_del_servidor" classname="com.example.cafeteria.AUT04LoginIntegracionTest" time="0.016"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

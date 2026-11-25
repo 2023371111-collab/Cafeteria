@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.cafeteria.P12ResilienciaTest" tests="14" skipped="0" failures="0" errors="0" timestamp="2026-11-25T00:10:49.875Z" hostname="MATEBOOKANGEL" time="8.225">
+  <properties/>
+  <testcase name="res05_401_y_403_no_se_reintentan" classname="com.example.cafeteria.P12ResilienciaTest" time="0.018"/>
+  <testcase name="res07_respuesta_perdida_y_reintento_devuelve_el_mismo_pedido" classname="com.example.cafeteria.P12ResilienciaTest" time="0.023"/>
+  <testcase name="cambiar_estado_no_se_reintenta_automaticamente" classname="com.example.cafeteria.P12ResilienciaTest" time="0.018"/>
+  <testcase name="espera_progresiva_se_duplica_y_tiene_tope" classname="com.example.cafeteria.P12ResilienciaTest" time="0.005"/>
+  <testcase name="res03_servidor_sin_respuesta_timeout_y_luego_recupera" classname="com.example.cafeteria.P12ResilienciaTest" time="8.02"/>
+  <testcase name="res06_recuperacion_despues_de_corte_a_media_respuesta" classname="com.example.cafeteria.P12ResilienciaTest" time="0.016"/>
+  <testcase name="azar_mueve_la_espera_entre_75_y_125_por_ciento" classname="com.example.cafeteria.P12ResilienciaTest" time="0.003"/>
+  <testcase name="res04_un_503_se_reintenta_y_luego_funciona" classname="com.example.cafeteria.P12ResilienciaTest" time="0.012"/>
+  <testcase name="res01_sin_internet_se_reintenta_y_termina_en_error_controlado" classname="com.example.cafeteria.P12ResilienciaTest" time="0.044"/>
+  <testcase name="sin_reintentos_hace_un_solo_intento" classname="com.example.cafeteria.P12ResilienciaTest" time="0.008"/>
+  <testcase name="cada_pedido_nuevo_lleva_una_clave_distinta_por_omision" classname="com.example.cafeteria.P12ResilienciaTest" time="0.014"/>
+  <testcase name="validacion_422_no_se_reintenta" classname="com.example.cafeteria.P12ResilienciaTest" time="0.01"/>
+  <testcase name="res04_tres_500_seguidos_se_reportan_con_mensaje_sin_romper" classname="com.example.cafeteria.P12ResilienciaTest" time="0.015"/>
+  <testcase name="res07_todos_los_intentos_llevan_la_misma_clave_de_idempotencia" classname="com.example.cafeteria.P12ResilienciaTest" time="0.016"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[nov 24, 2026 6:10:57 P.M. okhttp3.mockwebserver.MockWebServer$SocketHandler handle
+ADVERTENCIA: MockWebServer[19217] connection from /127.0.0.1 didn't make a request
+]]></system-err>
+</testsuite>

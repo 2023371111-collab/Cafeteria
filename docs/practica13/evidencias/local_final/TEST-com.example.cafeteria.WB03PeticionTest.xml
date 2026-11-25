@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.cafeteria.WB03PeticionTest" tests="16" skipped="0" failures="0" errors="0" timestamp="2026-11-25T00:10:58.515Z" hostname="MATEBOOKANGEL" time="24.205">
+  <properties/>
+  <testcase name="e1_respuesta_html_con_200" classname="com.example.cafeteria.WB03PeticionTest" time="0.017"/>
+  <testcase name="e7_url_mal_formada_no_abre_conexion" classname="com.example.cafeteria.WB03PeticionTest" time="0.01"/>
+  <testcase name="c3_post_con_cuerpo" classname="com.example.cafeteria.WB03PeticionTest" time="0.012"/>
+  <testcase name="e4_timeout" classname="com.example.cafeteria.WB03PeticionTest" time="8.016"/>
+  <testcase name="c6_401_cuerpo_vacio" classname="com.example.cafeteria.WB03PeticionTest" time="0.014"/>
+  <testcase name="c7_200_con_error_true" classname="com.example.cafeteria.WB03PeticionTest" time="0.014"/>
+  <testcase name="c5_500_sin_json_mensaje_generico" classname="com.example.cafeteria.WB03PeticionTest" time="0.012"/>
+  <testcase name="c2_get_con_sesion_manda_encabezado" classname="com.example.cafeteria.WB03PeticionTest" time="0.011"/>
+  <testcase name="e5_conexion_cortada_a_media_respuesta" classname="com.example.cafeteria.WB03PeticionTest" time="0.01"/>
+  <testcase name="c4_422_mensaje_del_servidor" classname="com.example.cafeteria.WB03PeticionTest" time="0.009"/>
+  <testcase name="c1_get_200_sin_sesion" classname="com.example.cafeteria.WB03PeticionTest" time="0.01"/>
+  <testcase name="e3_servidor_apagado" classname="com.example.cafeteria.WB03PeticionTest" time="0.016"/>
+  <testcase name="e2_host_inexistente" classname="com.example.cafeteria.WB03PeticionTest" time="0.005"/>
+  <testcase name="parametro_se_codifica" classname="com.example.cafeteria.WB03PeticionTest" time="0.011"/>
+  <testcase name="limite_codigos_299_y_300" classname="com.example.cafeteria.WB03PeticionTest" time="8.02"/>
+  <testcase name="e6_servidor_recibe_y_no_contesta_se_detecta_por_timeout" classname="com.example.cafeteria.WB03PeticionTest" time="8.013"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[nov 24, 2026 6:11:06 P.M. okhttp3.mockwebserver.MockWebServer$SocketHandler handle
+ADVERTENCIA: MockWebServer[19268] connection from /127.0.0.1 didn't make a request
+nov 24, 2026 6:11:14 P.M. okhttp3.mockwebserver.MockWebServer$SocketHandler handle
+ADVERTENCIA: MockWebServer[19309] connection from /127.0.0.1 didn't make a request
+]]></system-err>
+</testsuite>

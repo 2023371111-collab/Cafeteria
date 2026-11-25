@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.example.cafeteria.WB02ParsePedidoTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-11-25T00:10:58.396Z" hostname="MATEBOOKANGEL" time="0.113">
+  <properties/>
+  <testcase name="c1_pedido_completo" classname="com.example.cafeteria.WB02ParsePedidoTest" time="0.016"/>
+  <testcase name="c4_avisable_distinto_de_1" classname="com.example.cafeteria.WB02ParsePedidoTest" time="0.015"/>
+  <testcase name="excepcion_total_no_numerico" classname="com.example.cafeteria.WB02ParsePedidoTest" time="0.012"/>
+  <testcase name="limite_items_vacio" classname="com.example.cafeteria.WB02ParsePedidoTest" time="0.013"/>
+  <testcase name="c3_solo_latitud" classname="com.example.cafeteria.WB02ParsePedidoTest" time="0.026"/>
+  <testcase name="c2_opcionales_nulos_y_sin_items" classname="com.example.cafeteria.WB02ParsePedidoTest" time="0.014"/>
+  <testcase name="excepcion_campo_obligatorio_faltante_se_traduce_a_ApiException" classname="com.example.cafeteria.WB02ParsePedidoTest" time="0.014"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

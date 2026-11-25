@@ -1,0 +1,301 @@
+{
+  "total_count": 2,
+  "jobs": [
+    {
+      "id": 138858609432,
+      "run_id": 45511070739,
+      "workflow_name": "CI Cafetería",
+      "head_branch": "main",
+      "run_url": "https://api.github.com/repos/2023371111-collab/Cafeteria/actions/runs/45511070739",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOV61OYM8AAAAgVJ47GA",
+      "head_sha": "48a20052a22295b693f71b5d58937f2d8b1fe0ab",
+      "url": "https://api.github.com/repos/2023371111-collab/Cafeteria/actions/jobs/138858609432",
+      "html_url": "https://github.com/2023371111-collab/Cafeteria/actions/runs/45511070739/job/138858609432",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-24T23:34:11Z",
+      "started_at": "2026-11-24T23:34:13Z",
+      "completed_at": "2026-11-24T23:38:15Z",
+      "name": "Pruebas unitarias + Lint (AUT-07)",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-24T23:34:14Z",
+          "completed_at": "2026-11-24T23:34:16Z"
+        },
+        {
+          "name": "Descargar el código",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-24T23:34:16Z",
+          "completed_at": "2026-11-24T23:34:17Z"
+        },
+        {
+          "name": "Instalar JDK 21",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-24T23:34:17Z",
+          "completed_at": "2026-11-24T23:34:17Z"
+        },
+        {
+          "name": "Preparar Gradle (con caché)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-24T23:34:17Z",
+          "completed_at": "2026-11-24T23:34:17Z"
+        },
+        {
+          "name": "Permiso de ejecución a gradlew",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-24T23:34:17Z",
+          "completed_at": "2026-11-24T23:34:17Z"
+        },
+        {
+          "name": "Pruebas unitarias, integración simulada y persistencia",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-24T23:34:17Z",
+          "completed_at": "2026-11-24T23:37:03Z"
+        },
+        {
+          "name": "Android Lint",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-24T23:37:03Z",
+          "completed_at": "2026-11-24T23:37:53Z"
+        },
+        {
+          "name": "Resumen de resultados",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-24T23:37:53Z",
+          "completed_at": "2026-11-24T23:37:53Z"
+        },
+        {
+          "name": "Guardar reportes (evidencia)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-24T23:37:53Z",
+          "completed_at": "2026-11-24T23:37:55Z"
+        },
+        {
+          "name": "Post Preparar Gradle (con caché)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-11-24T23:37:55Z",
+          "completed_at": "2026-11-24T23:38:13Z"
+        },
+        {
+          "name": "Post Instalar JDK 21",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 17,
+          "started_at": "2026-11-24T23:38:13Z",
+          "completed_at": "2026-11-24T23:38:13Z"
+        },
+        {
+          "name": "Post Descargar el código",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 18,
+          "started_at": "2026-11-24T23:38:13Z",
+          "completed_at": "2026-11-24T23:38:14Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 19,
+          "started_at": "2026-11-24T23:38:14Z",
+          "completed_at": "2026-11-24T23:38:14Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/2023371111-collab/Cafeteria/check-runs/138858609432",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000000024,
+      "runner_name": "GitHub Actions 1000000024",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    },
+    {
+      "id": 138858609805,
+      "run_id": 45511070739,
+      "workflow_name": "CI Cafetería",
+      "head_branch": "main",
+      "run_url": "https://api.github.com/repos/2023371111-collab/Cafeteria/actions/runs/45511070739",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOV61OYM8AAAAgVJ48jQ",
+      "head_sha": "48a20052a22295b693f71b5d58937f2d8b1fe0ab",
+      "url": "https://api.github.com/repos/2023371111-collab/Cafeteria/actions/jobs/138858609805",
+      "html_url": "https://github.com/2023371111-collab/Cafeteria/actions/runs/45511070739/job/138858609805",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-24T23:34:11Z",
+      "started_at": "2026-11-24T23:34:14Z",
+      "completed_at": "2026-11-24T23:39:03Z",
+      "name": "Integración con API PHP + MySQL (AUT-08)",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-24T23:34:15Z",
+          "completed_at": "2026-11-24T23:34:16Z"
+        },
+        {
+          "name": "Descargar el código",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-24T23:34:17Z",
+          "completed_at": "2026-11-24T23:34:17Z"
+        },
+        {
+          "name": "Instalar JDK 21",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-24T23:34:17Z",
+          "completed_at": "2026-11-24T23:34:18Z"
+        },
+        {
+          "name": "Preparar Gradle (con caché)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-24T23:34:18Z",
+          "completed_at": "2026-11-24T23:34:20Z"
+        },
+        {
+          "name": "Permiso de ejecución a gradlew",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-24T23:34:20Z",
+          "completed_at": "2026-11-24T23:34:20Z"
+        },
+        {
+          "name": "Configurar backend de pruebas (sin credenciales reales)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-24T23:34:20Z",
+          "completed_at": "2026-11-24T23:34:20Z"
+        },
+        {
+          "name": "Levantar API PHP + MySQL 8 (Docker)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-24T23:34:20Z",
+          "completed_at": "2026-11-24T23:34:53Z"
+        },
+        {
+          "name": "Esperar a que la API responda",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-24T23:34:53Z",
+          "completed_at": "2026-11-24T23:34:53Z"
+        },
+        {
+          "name": "Pruebas contra el backend real",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-24T23:34:53Z",
+          "completed_at": "2026-11-24T23:37:57Z"
+        },
+        {
+          "name": "Resumen de resultados",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-24T23:37:57Z",
+          "completed_at": "2026-11-24T23:37:57Z"
+        },
+        {
+          "name": "Bitácora del servidor si algo falló",
+          "status": "completed",
+          "conclusion": "skipped",
+          "number": 11,
+          "started_at": "2026-11-24T23:37:57Z",
+          "completed_at": "2026-11-24T23:37:57Z"
+        },
+        {
+          "name": "Guardar reportes (evidencia)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-11-24T23:37:57Z",
+          "completed_at": "2026-11-24T23:37:58Z"
+        },
+        {
+          "name": "Apagar contenedores",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-11-24T23:37:58Z",
+          "completed_at": "2026-11-24T23:38:01Z"
+        },
+        {
+          "name": "Post Preparar Gradle (con caché)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 24,
+          "started_at": "2026-11-24T23:38:01Z",
+          "completed_at": "2026-11-24T23:39:00Z"
+        },
+        {
+          "name": "Post Instalar JDK 21",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25,
+          "started_at": "2026-11-24T23:39:00Z",
+          "completed_at": "2026-11-24T23:39:00Z"
+        },
+        {
+          "name": "Post Descargar el código",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26,
+          "started_at": "2026-11-24T23:39:00Z",
+          "completed_at": "2026-11-24T23:39:00Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27,
+          "started_at": "2026-11-24T23:39:00Z",
+          "completed_at": "2026-11-24T23:39:00Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/2023371111-collab/Cafeteria/check-runs/138858609805",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000000025,
+      "runner_name": "GitHub Actions 1000000025",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}
